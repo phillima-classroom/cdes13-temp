@@ -11,14 +11,19 @@ public class PlayerScript : MonoBehaviour
     Animator _playerAnimator;
     Rigidbody2D _playerRb;
     Vector2 horMov;
+    BoxCollider2D _feetCollider;
 
     [SerializeField]
     float horSpeed;
+
+    [SerializeField]
+    float jumpSpeed;
     
     void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
+        _feetCollider = GetComponent<BoxCollider2D>();
     }
 
     void MovePlayer()
@@ -45,8 +50,14 @@ public class PlayerScript : MonoBehaviour
 
     void OnJump(InputValue inputValue)
     {
-        _playerRb.velocity = new Vector2(0, 5);
+        //CHECAR SE ESTA NO CHAO
+        if (_feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            _playerRb.velocity = new Vector2(0, jumpSpeed);
+        }
     }
+
+    
 
     // Update is called once per frame
     void Update()
