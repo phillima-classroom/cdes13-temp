@@ -14,6 +14,9 @@ public class PlayerScript : MonoBehaviour
     BoxCollider2D _feetCollider;
 
     [SerializeField]
+    GameObject arrowPrefab;
+    
+    [SerializeField]
     float horSpeed;
 
     [SerializeField]
@@ -57,6 +60,12 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    void OnFire(InputValue inputValue)
+    {
+        //Criar o arrow
+        _playerAnimator.SetTrigger("Shoot");
+        Instantiate(arrowPrefab,transform.position,Quaternion.identity);
+    }
     
 
     // Update is called once per frame

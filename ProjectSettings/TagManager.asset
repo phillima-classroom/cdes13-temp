@@ -15,7 +15,7 @@ TagManager:
   - Ground
   - Player
   - Enemy
-  - 
+  - Coin
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Coin
     uniqueID: 3138531671
+    locked: 0
+  - name: Arrow
+    uniqueID: 4150773867
     locked: 0
