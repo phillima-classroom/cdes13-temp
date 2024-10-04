@@ -15,12 +15,17 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     GameObject arrowPrefab;
+
+    [SerializeField]
+    GameObject playerShootPos;
     
     [SerializeField]
     float horSpeed;
-
+    
     [SerializeField]
     float jumpSpeed;
+    
+    bool canDoubleJump;
     
     void Awake()
     {
@@ -57,6 +62,11 @@ public class PlayerScript : MonoBehaviour
         if (_feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             _playerRb.velocity = new Vector2(0, jumpSpeed);
+            canDoubleJump = true;
+        }else if (canDoubleJump)
+        {
+            _playerRb.velocity = new Vector2(0, jumpSpeed);
+            canDoubleJump = false;  
         }
     }
 
@@ -64,7 +74,16 @@ public class PlayerScript : MonoBehaviour
     {
         //Criar o arrow
         _playerAnimator.SetTrigger("Shoot");
-        Instantiate(arrowPrefab,transform.position,Quaternion.identity);
+        
+        GameObject arrow = Instantiate(
+            arrowPrefab,
+            playerShootPos.transform.position,
+            Quaternion.identity);
+
+        float xScale = Mathf.Sign(transform.localScale.x);
+        
+        arrow.transform.localScale = new Vector3(xScale, 1, 1);
+        arrow.GetComponent<Arrow>().ArrowDir = (int) xScale;
     }
     
 
