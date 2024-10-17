@@ -23,4 +23,9 @@ public class Arrow : MonoBehaviour
     {
         _arrowRb.velocity = new Vector2(arrowSpeed*ArrowDir,0);
     }
+
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     Destroy(other.gameObject);
+    // }
 }

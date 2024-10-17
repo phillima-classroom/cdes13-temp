@@ -14,8 +14,10 @@ public class Coin : MonoBehaviour
             AudioSource.PlayClipAtPoint(
                 GetComponent<AudioSource>().clip
                 ,transform.position);
+
+            FindObjectOfType<ScoreUI>().UpdateScore();
             Destroy(gameObject);
-            
+  
         }
     }
 }
