@@ -24,8 +24,12 @@ public class Arrow : MonoBehaviour
         _arrowRb.velocity = new Vector2(arrowSpeed*ArrowDir,0);
     }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     Destroy(other.gameObject);
-    // }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //Verifica se acertou o foreground
+        if (other.CompareTag("TAG_Foreground"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float horSpeed;
 
+    [SerializeField] 
+    GameObject poofVFX;
+    
     void Awake()
     {
         _enemyRb = GetComponent<Rigidbody2D>();
@@ -41,8 +44,9 @@ public class Enemy : MonoBehaviour
             AudioSource.PlayClipAtPoint(
                 GetComponent<AudioSource>().clip,
                 transform.position);
+            GameObject poofGO = Instantiate(poofVFX, transform.position, Quaternion.identity);
+            Destroy(poofGO,2.0f);
             Destroy(gameObject,0.1f);
-            
         }
     }
 }
